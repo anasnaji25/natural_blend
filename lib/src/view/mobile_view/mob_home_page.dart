@@ -1,30 +1,40 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:natural_blend/src/constants/app_fonts.dart';
-import 'package:natural_blend/src/widgets/common_widgets/bottom_bar_desktop.dart';
-import 'package:natural_blend/src/widgets/common_widgets/common_app_bar.dart';
+import 'package:natural_blend/src/view/mobile_view/drawer_view.dart';
+import 'package:natural_blend/src/widgets/common_widgets/mobile_bottom_bar.dart';
 
-class HomePageView extends StatefulWidget {
-  const HomePageView({super.key});
+class MobileHomeView extends StatefulWidget {
+  MobileHomeView({Key? key}) : super(key: key);
 
   @override
-  State<HomePageView> createState() => _HomePageViewState();
+  State<MobileHomeView> createState() => _MobileHomeViewState();
 }
 
-class _HomePageViewState extends State<HomePageView> {
+class _MobileHomeViewState extends State<MobileHomeView> {
   CarouselController buttonCarouselController = CarouselController();
-
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonAppBar(), preferredSize: Size.fromHeight(60)),
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 29, 172, 32),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            // child: Image(
+            //     height: 25,
+            //     fit: BoxFit.fitHeight,
+            //     image: AssetImage("assets/images/logo.png")),
+          ),
+        ],
+      ),
+      drawer: Navdrawer(),
       body: ListView(
         children: [
           Container(
             width: size.width,
-            height: 600,
+            height: 200,
             child: CarouselSlider(
               items: [
                 {
@@ -48,7 +58,6 @@ class _HomePageViewState extends State<HomePageView> {
                   "image_large": "assets/images/sliders/Slider2.jpg",
                   "ad": "1",
                 },
-
                 // {
                 //   "image": "assets/images/sliders/Slider3.jpg",
                 //   "name": "TEMPLES OF\nSALVATION",
@@ -68,14 +77,14 @@ class _HomePageViewState extends State<HomePageView> {
                       children: [
                         Container(
                             width: size.width,
-                            height: 600,
+                            height: 300,
                             child: Image.asset(
                               i["image"]!,
                               fit: BoxFit.fill,
                             )),
                         Container(
                           width: size.width,
-                          height: 600,
+                          height: 300,
                           color: Colors.black38.withOpacity(0.3),
                         ),
                         Center(
@@ -86,7 +95,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Container(
-                                    height: 40,
+                                    height: 20,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.circular(7)),
@@ -110,7 +119,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 i["name"]!,
                                 textAlign: TextAlign.center,
                                 style: primaryFont.copyWith(
-                                    fontSize: 70,
+                                    fontSize: 15,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),
                               ),
@@ -121,7 +130,7 @@ class _HomePageViewState extends State<HomePageView> {
                                 i["desc"]!,
                                 textAlign: TextAlign.center,
                                 style: primaryFont.copyWith(
-                                  fontSize: 18,
+                                  fontSize: 13,
                                   color: Colors.white,
                                 ),
                               ),
@@ -134,7 +143,7 @@ class _HomePageViewState extends State<HomePageView> {
                                   InkWell(
                                     onTap: () {},
                                     child: Container(
-                                      height: 50,
+                                      height: 30,
                                       decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(40),
@@ -171,56 +180,48 @@ class _HomePageViewState extends State<HomePageView> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
+
+          //next
+
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 50,
+              ),
+              Text(
+                "Welcome to Natural Blend",
+                style: primaryFont.copyWith(
+                    fontWeight: FontWeight.bold, fontSize: 18),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Embark on a tantalizing journey of flavors and aromas with Natural Blend. We are dedicated to sourcing and delivering the finest quality spices from around the world. Immerse yourself in our diverse range of aromatic treasures, meticulously selected to enhance your culinary creations. Whether you're a passionate chef, a spice enthusiast, or a discerning buyer, we invite you to explore our exceptional collection and experience the essence of pure taste.",
+                textAlign: TextAlign.center,
+                style: primaryFont.copyWith(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: Colors.black54),
+              )
+            ],
           ),
+
+          //next
           Padding(
-            padding: const EdgeInsets.only(left: 100, right: 100),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Text(
-                        "Welcome to Natural Blend",
-                        style: primaryFont.copyWith(
-                            fontWeight: FontWeight.bold, fontSize: 25),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Text(
-                        "Embark on a tantalizing journey of flavors and aromas with Natural Blend. We are dedicated to sourcing and delivering the finest quality spices from around the world. Immerse yourself in our diverse range of aromatic treasures, meticulously selected to enhance your culinary creations. Whether you're a passionate chef, a spice enthusiast, or a discerning buyer, we invite you to explore our exceptional collection and experience the essence of pure taste.",
-                        textAlign: TextAlign.center,
-                        style: primaryFont.copyWith(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 20,
-                            color: Colors.black54),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Container(
-                      child: Image.asset("assets/images/th-876664973.jpeg"),
-                    ),
-                  ),
-                )
-              ],
+            padding: const EdgeInsets.all(15.0),
+            child: Container(
+              child: Image.asset("assets/images/th-876664973.jpeg"),
             ),
           ),
+
+          //next
           SizedBox(
             height: 50,
           ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Container(
@@ -254,6 +255,9 @@ class _HomePageViewState extends State<HomePageView> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 25,
+              ),
               Container(
                 height: 250,
                 width: 250,
@@ -284,6 +288,9 @@ class _HomePageViewState extends State<HomePageView> {
                     )
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 25,
               ),
               Container(
                 height: 250,
@@ -316,6 +323,9 @@ class _HomePageViewState extends State<HomePageView> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 25,
+              ),
               Container(
                 height: 250,
                 width: 250,
@@ -347,10 +357,19 @@ class _HomePageViewState extends State<HomePageView> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 25,
+              ),
             ],
           ),
+
+          //next
           const SizedBox(
-            height: 100,
+            height: 20,
+          ),
+          const Divider(),
+          const SizedBox(
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -360,15 +379,15 @@ class _HomePageViewState extends State<HomePageView> {
                 textAlign: TextAlign.center,
                 style: primaryFont.copyWith(
                     color: Colors.black87,
-                    fontSize: 35,
+                    fontSize: 28,
                     fontWeight: FontWeight.bold),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
@@ -392,7 +411,7 @@ class _HomePageViewState extends State<HomePageView> {
                       height: 10,
                     ),
                     Text(
-                      "masala koottu",
+                      "Masala koottu",
                       textAlign: TextAlign.center,
                       style: primaryFont.copyWith(
                           color: Colors.black87,
@@ -401,6 +420,9 @@ class _HomePageViewState extends State<HomePageView> {
                     )
                   ],
                 ),
+              ),
+              const SizedBox(
+                height: 30,
               ),
               Container(
                 height: 350,
@@ -433,6 +455,9 @@ class _HomePageViewState extends State<HomePageView> {
                   ],
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
               Container(
                 height: 350,
                 width: 250,
@@ -454,7 +479,7 @@ class _HomePageViewState extends State<HomePageView> {
                       height: 10,
                     ),
                     Text(
-                      "Chilly Powder",
+                      "Masala powders",
                       textAlign: TextAlign.center,
                       style: primaryFont.copyWith(
                           color: Colors.black87,
@@ -466,108 +491,7 @@ class _HomePageViewState extends State<HomePageView> {
               ),
             ],
           ),
-          SizedBox(
-            height: 50,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                height: 350,
-                width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.grey.withOpacity(0.1)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Crushed chillies",
-                      textAlign: TextAlign.center,
-                      style: primaryFont.copyWith(
-                          color: Colors.black87,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 350,
-                width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.grey.withOpacity(0.1)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/bag-min-768x768-1086294658.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Coriander Powder",
-                      textAlign: TextAlign.center,
-                      style: primaryFont.copyWith(
-                          color: Colors.black87,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: 350,
-                width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.grey.withOpacity(0.1)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Crushed chillies",
-                      textAlign: TextAlign.center,
-                      style: primaryFont.copyWith(
-                          color: Colors.black87,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Row(
@@ -595,7 +519,7 @@ class _HomePageViewState extends State<HomePageView> {
           const SizedBox(
             height: 50,
           ),
-          BottomWidget()
+          const MobViewBottom(),
         ],
       ),
     );
