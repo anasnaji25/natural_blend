@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:natural_blend/src/constants/app_constants.dart';
 import 'package:natural_blend/src/view/mobile_view/drawer_view.dart';
 import 'package:natural_blend/src/widgets/common_widgets/mobile_bottom_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class MobContactUsScreen extends StatefulWidget {
   const MobContactUsScreen({super.key});
@@ -11,22 +14,41 @@ class MobContactUsScreen extends StatefulWidget {
 }
 
 class _MobContactUsScreenState extends State<MobContactUsScreen> {
+  var nameCn = TextEditingController();
+  var emailCn = TextEditingController();
+  var contentCn = TextEditingController();
+
+  setDefalt() {
+    nameCn.clear();
+    emailCn.clear();
+    contentCn.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Colors.white,
         actions: const [
           Padding(
             padding: EdgeInsets.all(8.0),
-            // child: Image(
-            //     height: 25,
-            //     fit: BoxFit.fitHeight,
-            //     image: AssetImage("assets/images/logo.png")),
+            child: Image(
+                height: 80,
+                fit: BoxFit.fitHeight,
+                image: AssetImage(logoImage)),
           ),
         ],
       ),
-      drawer:  Navdrawer(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(FontAwesomeIcons.whatsapp, size: 28),
+        backgroundColor: Colors.green.shade800,
+        onPressed: () {
+          String url = "https://wa.me/$whatsUppNumber/?text=Hello";
+          launchUrl(Uri.parse(url));
+        },
+      ),
+      drawer: Navdrawer(),
       body: ListView(
         children: [
           // Stack(
@@ -86,10 +108,10 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                               borderRadius: BorderRadius.circular(0),
                               color: Colors.grey[200]),
                           alignment: Alignment.center,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(left: 10, right: 10),
                             child: TextField(
-                              //controller: usernamecontroller,
+                              controller: nameCn,
                               decoration: InputDecoration(
                                 isCollapsed: true,
                                 isDense: true,
@@ -110,10 +132,10 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                               borderRadius: BorderRadius.circular(0),
                               color: Colors.grey[200]),
                           alignment: Alignment.center,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(left: 10, right: 10),
                             child: TextField(
-                              //controller: usernamecontroller,
+                              controller: emailCn,
                               decoration: InputDecoration(
                                 isCollapsed: true,
                                 isDense: true,
@@ -134,11 +156,11 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                               borderRadius: BorderRadius.circular(0),
                               color: Colors.grey[200]),
                           alignment: Alignment.center,
-                          child: const Padding(
+                          child: Padding(
                             padding: EdgeInsets.only(left: 10, right: 10),
                             child: TextField(
                               // maxLines: 100,
-                              //controller: usernamecontroller,
+                              controller: contentCn,
                               decoration: InputDecoration(
                                 isCollapsed: true,
                                 isDense: true,
@@ -151,20 +173,69 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20, bottom: 30),
-                          child: Container(
-                            height: 35,
-                            width: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.orange,
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "SEND A MESSAGE",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w600),
+                          child: InkWell(
+                            onTap: () async {
+                              if (nameCn.text.isNotEmpty &&
+                                  emailCn.text.isNotEmpty &&
+                                  contentCn.text.isNotEmpty) {
+                                final Uri params = Uri(
+                                    scheme: 'mailto',
+                                    path: email,
+                                    queryParameters: {
+                                      'subject': nameCn,
+                                      'body': contentCn
+                                    });
+                                setDefalt();
+                                await launchUrl(params);
+
+                                setDefalt();
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: "Fill all the fields",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0);
+
+                                // Scaffold.of(context).showSnackBar(SnackBar(
+                                //   content: Text("Sending Message"),
+                                // ));
+                                // Get.snackbar(
+                                //   "Fill all the fields",
+                                //   "",
+                                //   icon: const Icon(Icons.error_outline,
+                                //       color: Colors.white),
+                                //   snackPosition: SnackPosition.BOTTOM,
+                                //   backgroundColor: Colors.red,
+                                //   borderRadius: 20,
+                                //   maxWidth: 400,
+                                //   margin: const EdgeInsets.all(15),
+                                //   colorText: Colors.white,
+                                //   duration: const Duration(seconds: 3),
+                                //   isDismissible: true,
+                                //   dismissDirection:
+                                //       DismissDirection.horizontal,
+                                //   forwardAnimationCurve: Curves.easeOutBack,
+                                // );
+                              }
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: Colors.orange,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "SEND A MESSAGE",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
                             ),
                           ),
@@ -234,7 +305,7 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                               width: 10,
                             ),
                             const Text(
-                              "info@esankalp.om",
+                              "naturalblend01@gmail.com",
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,

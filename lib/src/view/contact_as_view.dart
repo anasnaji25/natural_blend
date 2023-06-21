@@ -1,8 +1,10 @@
-
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:natural_blend/src/constants/app_constants.dart';
 import 'package:natural_blend/src/widgets/common_widgets/bottom_bar_desktop.dart';
 import 'package:natural_blend/src/widgets/common_widgets/common_app_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsScreen extends StatefulWidget {
   const ContactUsScreen({super.key});
@@ -12,10 +14,15 @@ class ContactUsScreen extends StatefulWidget {
 }
 
 class _ContactUsScreenState extends State<ContactUsScreen> {
+  var nameCn = TextEditingController();
+  var emailCn = TextEditingController();
+  var contentCn = TextEditingController();
 
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var messageController = TextEditingController();
+  setDefalt() {
+    nameCn.clear();
+    emailCn.clear();
+    contentCn.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +30,14 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size.fromHeight(60), child: CommonAppBar()),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(FontAwesomeIcons.whatsapp, size: 28),
+        backgroundColor: Colors.green.shade800,
+        onPressed: () {
+          String url = "https://wa.me/$whatsUppNumber/?text=Hello";
+          launchUrl(Uri.parse(url));
+        },
+      ),
       body: ListView(
         children: [
           Stack(
@@ -99,7 +114,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               padding:
                                   const EdgeInsets.only(left: 10, right: 10),
                               child: TextField(
-                                controller: nameController,
+                                controller: nameCn,
                                 decoration: const InputDecoration(
                                   isCollapsed: true,
                                   isDense: true,
@@ -125,7 +140,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                               padding:
                                   const EdgeInsets.only(left: 10, right: 10),
                               child: TextField(
-                                controller: emailController,
+                                controller: emailCn,
                                 decoration: const InputDecoration(
                                   isCollapsed: true,
                                   isDense: true,
@@ -152,7 +167,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                   left: 10, right: 10, top: 5, bottom: 5),
                               child: TextField(
                                 // maxLines: 100,
-                                controller: messageController,
+                                controller: contentCn,
                                 maxLines: 5,
                                 decoration: const InputDecoration(
                                   isCollapsed: true,
@@ -167,21 +182,34 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                           Padding(
                             padding: const EdgeInsets.only(top: 20, left: 120),
                             child: InkWell(
-                              onTap: () {
-                                if (nameController.text.isNotEmpty &&
-                                    emailController.text.isNotEmpty &&
-                                    messageController.text.isNotEmpty) {
-                                  // SupportModel supportModel = SupportModel(
-                                  //     email: emailController.text,
-                                  //     message: messageController.text,
-                                  //     name: nameController.text);
+                              onTap: () async {
+                                if (nameCn.text.isNotEmpty &&
+                                    emailCn.text.isNotEmpty &&
+                                    contentCn.text.isNotEmpty) {
+                                  final Uri params = Uri(
+                                      scheme: 'mailto',
+                                      path: email,
+                                      queryParameters: {
+                                        'subject': nameCn,
+                                        'body': contentCn
+                                      });
+                                  setDefalt();
+                                  await launchUrl(params);
 
-                                  // profileController.askSupport(supportModel);
-
-                                  emailController.clear();
-                                  nameController.clear();
-                                  messageController.clear();
+                                  setDefalt();
                                 } else {
+                                  Fluttertoast.showToast(
+                                      msg: "Fill all the fields",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0);
+
+                                  // Scaffold.of(context).showSnackBar(SnackBar(
+                                  //   content: Text("Sending Message"),
+                                  // ));
                                   // Get.snackbar(
                                   //   "Fill all the fields",
                                   //   "",
@@ -299,7 +327,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                                   width: 20,
                                 ),
                                 const Text(
-                                  "info@e-sankalp.com",
+                                  "naturalblend01@gmail.com",
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w600,

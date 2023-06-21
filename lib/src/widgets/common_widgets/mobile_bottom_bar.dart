@@ -32,7 +32,7 @@ class _MobViewBottomState extends State<MobViewBottom> {
                   height: 100,
                 ),
                 const Text(
-                  """E-Sankalp is a attempt to bridge the\ngap between the Divinity and self, using\nthe latest cutting edge technology.""",
+                   """We are dedicated to sourcing and\ndelivering the finest quality\nspices from around the world""",
                   style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -47,7 +47,7 @@ class _MobViewBottomState extends State<MobViewBottom> {
                     InkWell(
                       onTap: () {
                         launchUrl(Uri.parse(
-                            "https://www.instagram.com/natural_blend/"));
+                            "https://instagram.com/naturalblend1.0?igshid=MzNlNGNkZWQ4Mg=="));
                       },
                       child: Container(
                         height: 35,
@@ -70,7 +70,7 @@ class _MobViewBottomState extends State<MobViewBottom> {
                     InkWell(
                       onTap: () {
                         launchUrl(Uri.parse(
-                            "https://www.facebook.com/natural_blend"));
+                            "https://www.facebook.com/naturalblend1.0"));
                       },
                       child: Container(
                         height: 35,
@@ -129,18 +129,18 @@ class _MobViewBottomState extends State<MobViewBottom> {
                 // ),
               
 
-                const SizedBox(
-                  height: 15,
-                ),
-                InkWell(
-                  onTap: () {
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // InkWell(
+                //   onTap: () {
                    
-                  },
-                  child: const Text(
-                    "Our Products",
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                ),
+                //   },
+                //   child: const Text(
+                //     "Our Products",
+                //     style: TextStyle(fontSize: 16, color: Colors.grey),
+                //   ),
+                // ),
                 const SizedBox(
                   height: 15,
                 ),

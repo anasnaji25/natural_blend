@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:natural_blend/src/constants/app_constants.dart';
 import 'package:natural_blend/src/constants/app_fonts.dart';
 import 'package:natural_blend/src/widgets/common_widgets/bottom_bar_desktop.dart';
 import 'package:natural_blend/src/widgets/common_widgets/common_app_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({super.key});
@@ -20,6 +23,14 @@ class _HomePageViewState extends State<HomePageView> {
     return Scaffold(
       appBar: PreferredSize(
           child: CommonAppBar(), preferredSize: Size.fromHeight(60)),
+            floatingActionButton: FloatingActionButton(
+        child: Icon(FontAwesomeIcons.whatsapp, size: 28),
+        backgroundColor: Colors.green.shade800,
+        onPressed: () {
+          String url = "https://wa.me/$whatsUppNumber/?text=Hello";
+          launchUrl(Uri.parse(url));
+        },
+      ),
       body: ListView(
         children: [
           Container(
@@ -28,21 +39,21 @@ class _HomePageViewState extends State<HomePageView> {
             child: CarouselSlider(
               items: [
                 {
-                  "image": "assets/images/image1.jpg",
+                  "image": "assets/images/image1.jpeg",
                   "name": "Discover the Spice\nWonderland",
                   "desc": "With our exceptional collection of spices",
                   "image_large": "assets/images/sliders/Slider.jpg",
                   "ad": "1",
                 },
                 {
-                  "image": "assets/images/image (1).jpg",
+                  "image": "assets/images/image (1).jpeg",
                   "name": "Savor the Essence of\nAuthentic Flavors",
                   "desc": "With our exceptional collection of spices",
                   "image_large": "assets/images/sliders/Slider2.jpg",
                   "ad": "1",
                 },
                 {
-                  "image": "assets/images/image (2).jpg",
+                  "image": "assets/images/image (2).jpeg",
                   "name": "Indulge in Culinary\nAdventures",
                   "desc": "With our exceptional collection of spices",
                   "image_large": "assets/images/sliders/Slider2.jpg",
@@ -196,7 +207,7 @@ class _HomePageViewState extends State<HomePageView> {
                         height: 15,
                       ),
                       Text(
-                        "Embark on a tantalizing journey of flavors and aromas with Natural Blend. We are dedicated to sourcing and delivering the finest quality spices from around the world. Immerse yourself in our diverse range of aromatic treasures, meticulously selected to enhance your culinary creations. Whether you're a passionate chef, a spice enthusiast, or a discerning buyer, we invite you to explore our exceptional collection and experience the essence of pure taste.",
+                        "we are aleppy based food production, manufacturing and exporting company. Embark on a tantalizing journey of flavors and aromas with Natural Blend. We are dedicated to sourcing and delivering the finest quality spices from around the world. Immerse yourself in our diverse range of aromatic treasures, meticulously selected to enhance your culinary creations. Whether you're a passionate chef, a spice enthusiast, or a discerning buyer, we invite you to explore our exceptional collection and experience the essence of pure taste.",
                         textAlign: TextAlign.center,
                         style: primaryFont.copyWith(
                             fontWeight: FontWeight.w600,
@@ -217,7 +228,7 @@ class _HomePageViewState extends State<HomePageView> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 50,
           ),
           Row(
@@ -381,18 +392,21 @@ class _HomePageViewState extends State<HomePageView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15,right: 15),
+                      child: Container(
+                        height: 250,
+                        child: Image.asset(
+                          "assets/images/masla_image.jpeg",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "masala koottu",
+                      "Masala Koottu",
                       textAlign: TextAlign.center,
                       style: primaryFont.copyWith(
                           color: Colors.black87,
@@ -412,11 +426,14 @@ class _HomePageViewState extends State<HomePageView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/bag-min-768x768-1086294658.png",
-                        fit: BoxFit.contain,
+                    Padding(
+                       padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Container(
+                        height: 250,
+                        child: Image.asset(
+                          "assets/images/WhatsApp Image 2023-05-20 at 2.00.14 PM(2).jpeg",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     const SizedBox(
@@ -443,18 +460,21 @@ class _HomePageViewState extends State<HomePageView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
+                    Padding(
+                       padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Container(
+                        height: 250,
+                        child: Image.asset(
+                          "assets/images/WhatsApp Image 2023-05-20 at 2.00.15 PM(1).jpeg",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "Chilly Powder",
+                      "Masala powders",
                       textAlign: TextAlign.center,
                       style: primaryFont.copyWith(
                           color: Colors.black87,
@@ -482,18 +502,21 @@ class _HomePageViewState extends State<HomePageView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Container(
+                        height: 250,
+                        child: Image.asset(
+                          "assets/images/WhatsApp Image 2023-05-20 at 2.00.16 PM.jpeg",
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
                     Text(
-                      "Crushed chillies",
+                      "Crushed Chillies",
                       textAlign: TextAlign.center,
                       style: primaryFont.copyWith(
                           color: Colors.black87,
@@ -506,92 +529,40 @@ class _HomePageViewState extends State<HomePageView> {
               Container(
                 height: 350,
                 width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.grey.withOpacity(0.1)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/bag-min-768x768-1086294658.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Coriander Powder",
-                      textAlign: TextAlign.center,
-                      style: primaryFont.copyWith(
-                          color: Colors.black87,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
+                
               ),
               Container(
                 height: 350,
                 width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey),
-                    color: Colors.grey.withOpacity(0.1)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      height: 250,
-                      child: Image.asset(
-                        "assets/images/Packs_SummacExtra-218x300-1838582197.png",
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "Crushed chillies",
-                      textAlign: TextAlign.center,
-                      style: primaryFont.copyWith(
-                          color: Colors.black87,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
-                ),
+                
               ),
             ],
           ),
           SizedBox(
             height: 50,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(40),
-                    color: Colors.green),
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: Text(
-                    "View More",
-                    style: primaryFont.copyWith(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Container(
+          //       height: 50,
+          //       decoration: BoxDecoration(
+          //           borderRadius: BorderRadius.circular(40),
+          //           color: Colors.green),
+          //       alignment: Alignment.center,
+          //       child: Padding(
+          //         padding: const EdgeInsets.only(left: 25, right: 25),
+          //         child: Text(
+          //           "View More",
+          //           style: primaryFont.copyWith(
+          //               color: Colors.white,
+          //               fontSize: 18,
+          //               fontWeight: FontWeight.w500),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(
             height: 50,
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:natural_blend/src/constants/app_constants.dart';
 import 'package:natural_blend/src/view/mobile_view/mob_contact_us_view.dart';
+import 'package:natural_blend/src/view/mobile_view/mob_home_page.dart';
 
 class Navdrawer extends StatefulWidget {
   const Navdrawer({super.key});
@@ -14,6 +15,7 @@ class _NavdrawerState extends State<Navdrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: const Color(0xff32343b),
+      
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
@@ -43,10 +45,8 @@ class _NavdrawerState extends State<Navdrawer> {
             ),
             InkWell(
               onTap: () {
-                //  Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => const MyMobileApp()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MobileHomeView()));
               },
               child: const Text(
                 "Home",
@@ -164,28 +164,27 @@ class _NavdrawerState extends State<Navdrawer> {
             //    ),
             //  ),
 
-           
-            InkWell(
-              onTap: () {
-                
-              },
-              child: const Text(
-                "Our Products",
-                style: TextStyle(color: Colors.white),
-              ),
-            ),
-            
-            const SizedBox(
-              height: 5,
-            ),
+            // InkWell(
+            //   onTap: () {
 
-            const Divider(
-              color: Color.fromARGB(255, 175, 173, 173),
-              thickness: 0.1,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
+            //   },
+            //   child: const Text(
+            //     "Our Products",
+            //     style: TextStyle(color: Colors.white),
+            //   ),
+            // ),
+
+            // const SizedBox(
+            //   height: 5,
+            // ),
+
+            // const Divider(
+            //   color: Color.fromARGB(255, 175, 173, 173),
+            //   thickness: 0.1,
+            // ),
+            // const SizedBox(
+            //   height: 5,
+            // ),
             InkWell(
               onTap: () {
                 Navigator.push(

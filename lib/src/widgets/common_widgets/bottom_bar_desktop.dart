@@ -61,7 +61,7 @@ class _BottomWidgetState extends State<BottomWidget> {
                           InkWell(
                             onTap: () {
                               launchUrl(Uri.parse(
-                                  "https://www.instagram.com/naturalblend/"));
+                                  "https://instagram.com/naturalblend1.0?igshid=MzNlNGNkZWQ4Mg=="));
                             },
                             child: Container(
                               height: 40,
@@ -82,7 +82,7 @@ class _BottomWidgetState extends State<BottomWidget> {
                           InkWell(
                             onTap: () {
                               launchUrl(Uri.parse(
-                                  "https://www.facebook.com/naturalblend"));
+                                  "https://www.facebook.com/naturalblend1.0"));
                             },
                             child: Container(
                               height: 40,
@@ -124,16 +124,16 @@ class _BottomWidgetState extends State<BottomWidget> {
                           "Home",
                           style: TextStyle(fontSize: 13, color: Colors.grey),
                         )),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: const Text(
-                        "Our Products",
-                        style: TextStyle(fontSize: 13, color: Colors.grey),
-                      ),
-                    ),
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    // InkWell(
+                    //   onTap: () {},
+                    //   child: const Text(
+                    //     "Our Products",
+                    //     style: TextStyle(fontSize: 13, color: Colors.grey),
+                    //   ),
+                    // ),
                     const SizedBox(
                       height: 15,
                     ),
@@ -231,7 +231,7 @@ class _BottomWidgetState extends State<BottomWidget> {
                               width: 10,
                             ),
                             Text(
-                              "info@naturalblends.com",
+                              "naturalblend01@gmail.com",
                               style:
                                   TextStyle(fontSize: 13, color: Colors.grey),
                             ),
