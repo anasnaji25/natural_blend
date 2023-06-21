@@ -178,16 +178,15 @@ class _MobContactUsScreenState extends State<MobContactUsScreen> {
                               if (nameCn.text.isNotEmpty &&
                                   emailCn.text.isNotEmpty &&
                                   contentCn.text.isNotEmpty) {
-                                final Uri params = Uri(
-                                    scheme: 'mailto',
-                                    path: email,
-                                    queryParameters: {
-                                      'subject': nameCn,
-                                      'body': contentCn
-                                    });
-                                setDefalt();
-                                await launchUrl(params);
-
+                              final Uri params = Uri(
+                                  scheme: 'mailto',
+                                  path: email,
+                                  query:
+                                      'subject=Business Enquirys&body=${contentCn.text}',
+                                );
+                                final url = params.toString();
+                                final urlPath = Uri.parse(url);
+                                launchUrl(urlPath);
                                 setDefalt();
                               } else {
                                 Fluttertoast.showToast(
